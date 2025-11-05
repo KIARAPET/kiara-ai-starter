@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Atualiza ferramentas de pacote para evitar surpresas
+# Atualiza pacotes e instala dependências básicas
+apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    python3-dev \
+    libpq-dev \
+    libffi-dev \
+    gcc
+
+# Atualiza pip e ferramentas de build
 python3 -m pip install --upgrade pip setuptools wheel
 
-# Instala as libs do projeto (sem apt-get, sem compilar nada)
-pip install -r requirements.txt
+# Instala dependências do projeto
+python3 -m pip install -r requirements.txt
