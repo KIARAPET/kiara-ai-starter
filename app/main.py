@@ -6,15 +6,10 @@ from datetime import date, datetime
 
 app = FastAPI(title="Kiara AI – MVP")
 
-# 🔓 CORS – permitir chamadas do frontend (GitHub Codespaces / localhost)
-origins = [
-    "http://localhost:5173",  # quando você rodar o front localmente
-    "https://expert-broccoli-6v7757gv96f4q7g-5174.app.github.dev",  # seu front no Codespaces
-]
-
+# 🔓 CORS – por enquanto liberar para qualquer origem (modo DEV)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,      # em produção você pode ajustar essa lista
+    allow_origins=["*"],      # ⚠️ em produção você pode restringir
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
